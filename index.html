@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=1"
+    />
+    <title>Les trois piliers d'excellence d'Audemars Piguet</title>
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+    <link rel="stylesheet" rel="preload" as="font" href="https://use.typekit.net/.css?v=1763" />
+
+    <script src="scormdriver.js" charset="utf-8"></script>
+    <script>
+      USE_LEGACY_IDENTIFIERS_FOR_2004 = true;
+      REVIEW_MODE_IS_READ_ONLY = false;
+      window.onbeforeunload = () => window.Unload();
+
+      const LoadContent = function () {
+        [
+          "assets/js/project.js",
+          "dist/main.chunk.js",
+          "dist/runtime-main.bundle.js",
+          "dist/vendors-main.chunk.js",
+        ].forEach((src) => {
+          script = document.createElement("script");
+          script.src = src;
+          script.charset = "utf-8";
+          script.async = false;
+          document.body.appendChild(script);
+        });
+      };
+
+      function Start() {
+        LoadContent();
+        
+        // ✅ Masquer la table des matières après le chargement
+        setTimeout(function() {
+          // Cherche tous les éléments contenant "toc" ou "table-of-contents"
+          var toc = document.querySelector('[class*="toc"]');
+          if (toc) toc.style.display = 'none';
+          
+          var tableOfContents = document.querySelector('[class*="table-of-contents"]');
+          if (tableOfContents) tableOfContents.style.display = 'none';
+          
+          // Alternative : masquer par ID
+          var tocElement = document.getElementById('toc');
+          if (tocElement) tocElement.style.display = 'none';
+        }, 1500); // Attend 1.5 secondes après le chargement
+      }
+    </script>
+    
+    <!-- ✅ CSS pour masquer la TOC dès le départ -->
+    <style>
+      .table-of-contents,
+      .toc,
+      [class*="toc"],
+      #toc {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body onload="Start()">
+    <div id="app" style="width: 100%; height: 100%"></div>
+  </body>
+</html>
